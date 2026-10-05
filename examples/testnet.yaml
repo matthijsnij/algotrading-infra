@@ -1,0 +1,69 @@
+# Testnet Trading Configuration Example
+# Same as live.yaml but testnet: true routes to the exchange's sandbox and uses
+# LIGHTHOUSE_PHEMEX_TESTNET_API_KEY, LIGHTHOUSE_PHEMEX_TESTNET_API_SECRET
+
+paths:
+  logs_dir: "logs"
+  state_dir: "state_testnet"
+
+logging:
+  level: "INFO"
+
+exchange:
+  name: "phemex"
+  market_type: "swap"
+
+testnet: true
+
+risk:
+  max_drawdown_pct: 5.0
+  drawdown_quote_currency: "USDT"
+  drawdown_check_interval: 60
+  consecutive_errors_limit: 5
+  max_bot_restarts: 3
+  restart_backoff_seconds: 30.0
+  restart_backoff_max_seconds: 600.0
+  restart_healthy_reset_seconds: 3600.0
+
+# Alerting: optional Telegram notifications for startup/shutdown, halts, restarts,
+# drawdown/circuit-breaker events, trades, and periodic summaries. Disabled by default.
+# Requires LIGHTHOUSE_TELEGRAM_BOT_TOKEN / LIGHTHOUSE_TELEGRAM_CHAT_ID env vars when enabled.
+# alerting:
+#   enabled: false
+#   channel: "telegram"
+#   categories:
+#     startup: true
+#     shutdown: true
+#     halt: true
+#     emergency_close: true
+#     reconcile_issue: true
+#     restart_success: true
+#     restart_failed_attempt: true
+#     restart_exhausted: true
+#     drawdown_breach: true
+#     circuit_breaker: true
+#     position_opened: true
+#     trade_closed: true
+#     summary: true
+
+bots:
+  - name: "crypto_bot"
+    symbol: "BTC/USDT:USDT"
+    quote_currency: "USDT"
+    timeframe: "1h"
+    # summary_interval_seconds: 3600  # optional: periodic status summary via the notifier
+    limit: 200
+    scan_interval: 3600
+    position_interval: 60
+    direction: "both"
+    breakout_window: 20
+    atr_period: 14
+    atr_buffer_mult: 0.5
+    sl_atr_mult: 1.5
+    rr_ratio: 2.0
+    volume_period: 20
+    volume_mult: 1.2
+    atr_threshold: 50.0
+    risk_pct: 0.01
+    max_consecutive_errors: 5
+    max_entry_failures: 3

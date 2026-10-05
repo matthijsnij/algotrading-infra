@@ -1,0 +1,58 @@
+# Backtest Configuration Example
+# Copy to backtest.yaml and customize for your backtest run
+
+paths:
+  data_dir: "backtest_data/ohlcv"
+  logs_dir: "logs"
+  results_dir: "results"
+
+logging:
+  level: "INFO"
+
+backtest:
+  start_date: "2024-01-01"
+  end_date: "2024-12-31"
+  symbol_datasource: "BTCUSDT"  # Symbol as it appears in CSV files
+  initial_balance: 10000.0
+  warmup_bars: 50
+
+costs:
+  spread: 0.0005
+  taker_fee: 0.0006
+  maker_fee: 0.0002
+  slippage: 0.0001
+  latency_bars: 1
+  partial_fill_fraction: 1.0
+  limit_fill_policy: "through"
+
+funding:
+  model: "fixed"
+  rate: 0.0001
+
+metrics:
+  metrics_timeframe: "1d"
+  risk_free_rate: 0.0
+
+bots:
+  - name: "crypto_bot"
+    symbol: "BTC/USDT:USDT"
+    quote_currency: "USDT"
+    timeframe: "1h"
+    # Strategy-specific params below (these are extras, allowed by BotConfig).
+    # crypto_bot is a demonstration strategy only — see src/lighthouse/bots/examples/crypto_bot/config.py
+    # for what each of these means.
+    limit: 200
+    scan_interval: 3600
+    position_interval: 60
+    direction: "both"
+    breakout_window: 20
+    atr_period: 14
+    atr_buffer_mult: 0.5
+    sl_atr_mult: 1.5
+    rr_ratio: 2.0
+    volume_period: 20
+    volume_mult: 1.2
+    atr_threshold: 50.0
+    risk_pct: 0.01
+    max_consecutive_errors: 5
+    max_entry_failures: 3

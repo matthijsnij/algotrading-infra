@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lighthouse-trading"
+version = "0.1.0"
+description = "Infrastructure for researching, validating and running algorithmic trading strategies."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ccxt>=4.5",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "requests>=2.32",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "pandas_market_calendars>=5.4",
+    "alpaca-py>=0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+plotting = [
+    "matplotlib>=3.8",
+]
+parquet = [
+    "pyarrow>=15.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lighthouse"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

@@ -1,0 +1,64 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pytest
+.pytest_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+docs/_build/
+docs/_meta/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Handig
+handig/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets
+src/lighthouse/credentials.py
+.env
+
+# Logs (directory structure kept, contents ignored)
+logs/*
+!logs/.gitkeep
+!logs/events/
+!logs/trades/
+
+logs/events/*
+!logs/events/.gitkeep
+
+logs/trades/*
+!logs/trades/.gitkeep
+
+# Backtest data (directory structure kept, contents ignored)
+backtest_data/*
+!backtest_data/.gitkeep
+!backtest_data/funding/
+!backtest_data/ohlcv/
+
+backtest_data/funding/*
+!backtest_data/funding/.gitkeep
+
+backtest_data/ohlcv/*
+!backtest_data/ohlcv/.gitkeep
+# Added by code-review-graph
+.code-review-graph/
+
